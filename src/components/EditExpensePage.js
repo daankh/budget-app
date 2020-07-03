@@ -1,7 +1,10 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 
 const EditExpensePage = () => {
-  return <div>This is from my edit component</div>;
+  const params = useParams();
+  const { id } = params;
+  return <div>Editing the expense with the id {id}</div>;
 };
 
 export default EditExpensePage;
