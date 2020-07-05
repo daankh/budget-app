@@ -9,11 +9,21 @@ const expensesReducer = (state = initialState, action) => {
       return [...state, { ...expense }];
     }
     case REMOVE_EXPENSE: {
-      const { id: idToRemove } = action;
-      return state.filter(({ id }) => id !== idToRemove);
+      const { id } = action;
+      return state.filter((expense) => expense.id !== id);
     }
     case EDIT_EXPENSE: {
-      return [...state];
+      const { id, updates } = action;
+      return state.map((expense) => {
+        if (expense.id === id) {
+          return {
+            ...expense,
+            ...updates,
+          };
+        } else {
+          return expense;
+        }
+      });
     }
     default:
       return state;
