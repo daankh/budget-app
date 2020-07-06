@@ -5,7 +5,6 @@ import {
   SET_START_DATE,
   SET_END_DATE,
 } from "../action-types";
-import { act } from "react-dom/test-utils";
 
 const initialState = {
   text: "",
