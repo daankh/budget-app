@@ -1,11 +1,11 @@
 import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import Header from "../components/Header";
-import ExpenseDashboardPage from "../components/ExpenseDashboardPage";
-import AddExpensePage from "../components/AddExpensePage";
-import EditExpensePage from "../components/EditExpensePage";
-import HelpPage from "../components/HelpPage";
-import NotFoundPage from "../components/NotFoundPage";
+import Header from "../components/Header/Header";
+import ExpenseDashboardPage from "../components/pages/ExpenseDashboardPage/ExpenseDashboardPage";
+import AddExpensePage from "../components/pages/AddExpensePage/AddExpensePage";
+import EditExpensePage from "../components/pages/EditExpensePage/EditExpensePage";
+import HelpPage from "../components/pages/HelpPage/HelpPage";
+import NotFoundPage from "../components/pages/NotFoundPage/NotFoundPage";
 
 const AppRouter = () => (
   <BrowserRouter>
