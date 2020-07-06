@@ -7,7 +7,6 @@ import * as serviceWorker from "./serviceWorker";
 import "./styles/main.scss";
 
 import { addExpense } from "./redux/actions/expenses";
-import { setTextFliter } from "./redux/actions/filters";
 
 const store = configureStore();
 
@@ -17,11 +16,6 @@ store.dispatch(
 store.dispatch(
   addExpense({ description: "Gas bill", amount: 5000, createdAt: 200 })
 );
-store.dispatch(setTextFliter("gas"));
-
-setTimeout(() => {
-  store.dispatch(setTextFliter("bill"));
-}, 3000);
 
 ReactDOM.render(
   <React.StrictMode>

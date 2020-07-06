@@ -6,7 +6,7 @@ import {
   SET_END_DATE,
 } from "../action-types/filters";
 
-export const setTextFliter = (text = "") => ({
+export const setTextFilter = (text = "") => ({
   type: SET_TEXT_FILTER,
   text,
 });

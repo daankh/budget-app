@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { getVisibleExpenses } from "../../redux/selectors/expenses";
-import ExpenseListItem from "./components/ExpenseListItem";
+import ExpenseListItem from "./components/ExpenseListItem/ExpenseListItem";
 
 const ExpenseList = () => {
   const expenses = useSelector((state) =>
@@ -10,18 +10,17 @@ const ExpenseList = () => {
   return (
     <div>
       <h1>Expense list</h1>
-      {expenses.length &&
-        expenses.map((expense) => {
-          const { id, description, amount, createdAt } = expense;
-          return (
-            <ExpenseListItem
-              key={id}
-              description={description}
-              amount={amount}
-              createdAt={createdAt}
-            />
-          );
-        })}
+      {expenses.map((expense) => {
+        const { id, description, amount, createdAt } = expense;
+        return (
+          <ExpenseListItem
+            key={id}
+            description={description}
+            amount={amount}
+            createdAt={createdAt}
+          />
+        );
+      })}
     </div>
   );
 };
