@@ -14,9 +14,9 @@ export const getVisibleExpenses = (expenses, filters) => {
     })
     .sort((a, b) => {
       if (sortBy === "date") {
-        return a.createdAt - b.createdAt;
+        return b.createdAt - a.createdAt;
       } else {
-        return a.amount - b.amount;
+        return b.amount - a.amount;
       }
     });
 };

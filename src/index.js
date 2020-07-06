@@ -14,7 +14,10 @@ store.dispatch(
   addExpense({ description: "Water bill", amount: 4500, createdAt: 100 })
 );
 store.dispatch(
-  addExpense({ description: "Gas bill", amount: 5000, createdAt: 200 })
+  addExpense({ description: "Gas bill", amount: 2000, createdAt: 1000 })
+);
+store.dispatch(
+  addExpense({ description: "Rent", amount: 10900, createdAt: 200 })
 );
 
 ReactDOM.render(
