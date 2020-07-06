@@ -1,9 +1,12 @@
 import React from "react";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import { getVisibleExpenses } from "../../redux/selectors/expenses";
 import ExpenseListItem from "./components/ExpenseListItem";
 
-const ExpenseList = ({ expenses }) => {
+const ExpenseList = () => {
+  const expenses = useSelector((state) =>
+    getVisibleExpenses(state.expenses, state.filters)
+  );
   return (
     <div>
       <h1>Expense list</h1>
@@ -23,8 +26,4 @@ const ExpenseList = ({ expenses }) => {
   );
 };
 
-const mapStateToProps = (props) => ({
-  expenses: getVisibleExpenses(props.expenses, props.filters),
-});
-
-export default connect(mapStateToProps)(ExpenseList);
+export default ExpenseList;
