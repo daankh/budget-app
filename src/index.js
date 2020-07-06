@@ -6,7 +6,14 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import "./styles/main.scss";
 
+import { addExpense } from "./redux/actions/expenses";
+import { setTextFliter } from "./redux/actions/filters";
+
 const store = configureStore();
+
+store.dispatch(addExpense({ description: "Rent", amount: 1000 }));
+store.dispatch(addExpense({ description: "Car", amount: 500 }));
+store.dispatch(setTextFliter("rent"));
 
 ReactDOM.render(
   <React.StrictMode>
