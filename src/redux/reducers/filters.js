@@ -5,10 +5,11 @@ import {
   SET_START_DATE,
   SET_END_DATE,
 } from "../action-types";
+import { act } from "react-dom/test-utils";
 
 const initialState = {
   text: "",
-  sortyBy: "date", //date or amount
+  sortBy: "date", //date or amount
   startDate: undefined,
   endDate: undefined,
 };
@@ -16,15 +17,18 @@ const filtersReducer = (state = initialState, action) => {
   const { type } = action;
   switch (type) {
     case SET_TEXT_FILTER:
-      return { ...state };
+      const { text } = action;
+      return { ...state, text };
     case SORT_BY_DATE:
-      return { ...state };
+      return { ...state, sortBy: "date" };
     case SORT_BY_AMOUNT:
-      return { ...state };
+      return { ...state, sortBy: "amount" };
     case SET_START_DATE:
-      return { ...state };
+      const { startDate } = action;
+      return { ...state, startDate };
     case SET_END_DATE:
-      return { ...state };
+      const { endDate } = action;
+      return { ...state, endDate };
     default:
       return state;
   }
