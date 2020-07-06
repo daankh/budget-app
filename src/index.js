@@ -11,9 +11,17 @@ import { setTextFliter } from "./redux/actions/filters";
 
 const store = configureStore();
 
-store.dispatch(addExpense({ description: "Rent", amount: 1000 }));
-store.dispatch(addExpense({ description: "Car", amount: 500 }));
-store.dispatch(setTextFliter("rent"));
+store.dispatch(
+  addExpense({ description: "Water bill", amount: 4500, createdAt: 100 })
+);
+store.dispatch(
+  addExpense({ description: "Gas bill", amount: 5000, createdAt: 200 })
+);
+store.dispatch(setTextFliter("gas"));
+
+setTimeout(() => {
+  store.dispatch(setTextFliter("bill"));
+}, 3000);
 
 ReactDOM.render(
   <React.StrictMode>
