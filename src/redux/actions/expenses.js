@@ -1,5 +1,9 @@
 import { v4 as uuidv4 } from "uuid";
-import { ADD_EXPENSE, REMOVE_EXPENSE, EDIT_EXPENSE } from "../action-types";
+import {
+  ADD_EXPENSE,
+  REMOVE_EXPENSE,
+  EDIT_EXPENSE,
+} from "../action-types/expenses";
 
 export const addExpense = ({
   description = "",

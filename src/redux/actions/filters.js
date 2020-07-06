@@ -4,7 +4,7 @@ import {
   SORT_BY_AMOUNT,
   SET_START_DATE,
   SET_END_DATE,
-} from "../action-types";
+} from "../action-types/filters";
 
 export const setTextFliter = (text = "") => ({
   type: SET_TEXT_FILTER,

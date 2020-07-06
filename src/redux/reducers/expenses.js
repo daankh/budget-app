@@ -1,4 +1,8 @@
-import { ADD_EXPENSE, REMOVE_EXPENSE, EDIT_EXPENSE } from "../action-types";
+import {
+  ADD_EXPENSE,
+  REMOVE_EXPENSE,
+  EDIT_EXPENSE,
+} from "../action-types/expenses";
 
 const initialState = [];
 const expensesReducer = (state = initialState, action) => {
