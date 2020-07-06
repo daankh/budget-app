@@ -15,6 +15,7 @@ const ExpenseList = () => {
         return (
           <ExpenseListItem
             key={id}
+            id={id}
             description={description}
             amount={amount}
             createdAt={createdAt}
