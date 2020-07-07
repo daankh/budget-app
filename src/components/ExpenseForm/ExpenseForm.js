@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { addExpense, editExpense } from "../../redux/actions/expenses";
-// import DatePicker from "./components/DatePicker";
+import moment from "moment";
+import MaterialUIPicker from "./components/DatePicker";
 
 class ExpenseForm extends Component {
   state = {
     description: "",
     amount: "",
     note: "",
+    createdAt: moment(),
   };
 
   onFormSubmit = (e) => {
@@ -19,6 +21,7 @@ class ExpenseForm extends Component {
       description: "",
       amount: 0,
       note: "",
+      createdAt: moment(),
     }));
   };
 
@@ -37,8 +40,14 @@ class ExpenseForm extends Component {
     }
   };
 
+  setCreatedAt = (createdAt) => {
+    this.setState(() => ({
+      createdAt,
+    }));
+  };
+
   render() {
-    const { description, amount, note } = this.state;
+    const { description, amount, note, createdAt } = this.state;
     return (
       <div>
         <form onSubmit={this.onFormSubmit}>
@@ -56,6 +65,10 @@ class ExpenseForm extends Component {
             placeholder="Amount"
             value={amount}
             onChange={this.onChangeHandler}
+          />
+          <MaterialUIPicker
+            createdAt={createdAt}
+            setCreatedAt={this.setCreatedAt}
           />
           <textarea
             name="note"
