@@ -6,10 +6,10 @@ export const getVisibleExpenses = (expenses, filters) => {
     .filter((expense) => {
       const { createdAt, description: expenseText } = expense;
       const startDateMatch = startDate
-        ? startDate.isSameOrBefore(moment(createdAt))
+        ? startDate.isSameOrBefore(moment(createdAt), "day")
         : true;
       const endDateMatch = endDate
-        ? endDate.isSameOrAfter(moment(createdAt))
+        ? endDate.isSameOrAfter(moment(createdAt), "day")
         : true;
       const textMatch = expenseText
         .toLowerCase()

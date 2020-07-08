@@ -1,4 +1,5 @@
 import React from "react";
+import moment from "moment";
 import { useDispatch } from "react-redux";
 import MomentUtils from "@date-io/moment";
 import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
@@ -10,7 +11,7 @@ const RangePicker = ({ startDate, endDate, setStartDate, setEndDate }) => {
       <DatePicker
         label="Start date"
         value={startDate}
-        maxDate={endDate}
+        maxDate={endDate || moment("2100-01-01")}
         onChange={(date) => {
           dispatch(setStartDate(date));
         }}
@@ -21,7 +22,7 @@ const RangePicker = ({ startDate, endDate, setStartDate, setEndDate }) => {
       <DatePicker
         label="End date"
         value={endDate}
-        minDate={startDate}
+        minDate={startDate || moment("1900-01-01")}
         onChange={(date) => {
           dispatch(setEndDate(date));
         }}
