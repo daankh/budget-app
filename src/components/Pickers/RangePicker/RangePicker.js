@@ -16,6 +16,7 @@ const RangePicker = ({ startDate, endDate, setStartDate, setEndDate }) => {
         }}
         format="DD.MM.YYYY"
         animateYearScrolling
+        clearable={true}
       />
       <DatePicker
         label="End date"
@@ -26,6 +27,7 @@ const RangePicker = ({ startDate, endDate, setStartDate, setEndDate }) => {
         }}
         format="DD.MM.YYYY"
         animateYearScrolling
+        clearable={true}
       />
     </MuiPickersUtilsProvider>
   );
