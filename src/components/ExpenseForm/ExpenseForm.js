@@ -3,13 +3,17 @@ import moment from "moment";
 import MaterialUIPicker from "./components/DatePicker";
 
 class ExpenseForm extends Component {
-  state = {
-    description: "",
-    amount: "",
-    note: "",
-    createdAt: moment(),
-    error: "",
-  };
+  constructor(props) {
+    super(props);
+    const { expense } = this.props;
+    this.state = {
+      description: expense ? expense.description : "",
+      amount: expense ? (expense.amount / 100).toString() : "",
+      note: expense ? expense.note : "",
+      createdAt: expense ? moment(expense.createdAt) : moment(),
+      error: "",
+    };
+  }
 
   onFormSubmit = (e) => {
     e.preventDefault();
