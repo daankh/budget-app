@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
-import { addExpense, editExpense } from "../../redux/actions/expenses";
 import moment from "moment";
 import MaterialUIPicker from "./components/DatePicker";
 
@@ -10,19 +8,33 @@ class ExpenseForm extends Component {
     amount: "",
     note: "",
     createdAt: moment(),
+    error: "",
   };
 
   onFormSubmit = (e) => {
     e.preventDefault();
-    const { addExpense } = this.props;
-    const { description, amount, note } = this.state;
-    addExpense({ description, amount, note });
-    this.setState(() => ({
-      description: "",
-      amount: 0,
-      note: "",
-      createdAt: moment(),
-    }));
+    const { onSubmit } = this.props;
+    const { description, amount, createdAt, note } = this.state;
+
+    if (!description || !amount) {
+      this.setState(() => ({
+        error: "Please provide description and amount.",
+      }));
+    } else {
+      onSubmit({
+        description,
+        amount: parseFloat(amount, 10) * 100,
+        createdAt: createdAt.valueOf(),
+        note,
+      });
+      this.setState(() => ({
+        description: "",
+        amount: "",
+        note: "",
+        createdAt: moment(),
+        error: "",
+      }));
+    }
   };
 
   onChangeHandler = (e) => {
@@ -32,7 +44,7 @@ class ExpenseForm extends Component {
         [`${name}`]: value,
       }));
     } else {
-      if (value.match(/^\d*(\.\d{0,2})?$/)) {
+      if (!value || value.match(/^\d{1,}(\.\d{0,2})?$/)) {
         this.setState(() => ({
           [`${name}`]: value,
         }));
@@ -47,9 +59,10 @@ class ExpenseForm extends Component {
   };
 
   render() {
-    const { description, amount, note, createdAt } = this.state;
+    const { description, amount, note, createdAt, error } = this.state;
     return (
       <div>
+        {error.length ? <p>{error}</p> : null}
         <form onSubmit={this.onFormSubmit}>
           <input
             name="description"
@@ -83,10 +96,4 @@ class ExpenseForm extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  addExpense: ({ description, note, amount, createdAt }) =>
-    dispatch(addExpense({ description, note, amount, createdAt })),
-  editExpense: (id, updates) => dispatch(editExpense(id, updates)),
-});
-
-export default connect(null, mapDispatchToProps)(ExpenseForm);
+export default ExpenseForm;
