@@ -1,9 +1,11 @@
 import React from "react";
+import { useHistory } from "react-router";
 import { useDispatch } from "react-redux";
 import { addExpense } from "../../../redux/actions/expenses";
 import ExpenseForm from "../../ExpenseForm/ExpenseForm";
 
 const AddExpensePage = () => {
+  const history = useHistory();
   const dispatch = useDispatch();
   return (
     <div>
@@ -11,6 +13,7 @@ const AddExpensePage = () => {
       <ExpenseForm
         onSubmit={(expense) => {
           dispatch(addExpense(expense));
+          history.push({ pathname: "/" });
         }}
       />
     </div>
