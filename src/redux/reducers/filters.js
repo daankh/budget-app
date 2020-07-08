@@ -1,3 +1,4 @@
+import moment from "moment";
 import {
   SET_TEXT_FILTER,
   SORT_BY_DATE,
@@ -9,8 +10,8 @@ import {
 const initialState = {
   text: "",
   sortBy: "date", //date or amount
-  startDate: undefined,
-  endDate: undefined,
+  startDate: moment().startOf("month"),
+  endDate: moment().endOf("month"),
 };
 const filtersReducer = (state = initialState, action) => {
   const { type } = action;
