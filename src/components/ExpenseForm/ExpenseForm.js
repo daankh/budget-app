@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import moment from "moment";
-import MaterialUIPicker from "./components/DatePicker";
+import MaterialUIPicker from "../Pickers/DatePicker/DatePicker";
 
 class ExpenseForm extends Component {
   constructor(props) {
