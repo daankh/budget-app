@@ -1,7 +1,7 @@
 import React from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { editExpense } from "../../../redux/actions/expenses";
+import { editExpense, removeExpense } from "../../../redux/actions/expenses";
 import ExpenseForm from "../../ExpenseForm/ExpenseForm";
 
 const EditExpensePage = () => {
@@ -23,6 +23,14 @@ const EditExpensePage = () => {
           history.push({ pathname: "/" });
         }}
       />
+      <button
+        onClick={() => {
+          dispatch(removeExpense({ id }));
+          history.push({ pathname: "/" });
+        }}
+      >
+        Remove
+      </button>
     </div>
   );
 };
