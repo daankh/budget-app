@@ -6,12 +6,14 @@ const Picker = ({ createdAt, setCreatedAt }) => {
   return (
     <MuiPickersUtilsProvider utils={MomentUtils}>
       <DatePicker
+        label={"Date"}
         value={createdAt}
         onChange={(date) => {
           setCreatedAt(date);
         }}
         format="DD.MM.YYYY"
         animateYearScrolling
+        inputVariant={"outlined"}
       />
     </MuiPickersUtilsProvider>
   );
