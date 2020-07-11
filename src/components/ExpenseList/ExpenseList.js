@@ -8,20 +8,27 @@ const ExpenseList = () => {
     getVisibleExpenses(state.expenses, state.filters)
   );
   return (
-    <div>
-      <h1>Expense list</h1>
-      {expenses.map((expense) => {
-        const { id, description, amount, createdAt } = expense;
-        return (
-          <ExpenseListItem
-            key={id}
-            id={id}
-            description={description}
-            amount={amount}
-            createdAt={createdAt}
-          />
-        );
-      })}
+    <div data-test="ExpenseList">
+      {expenses.length ? (
+        <React.Fragment>
+          <h1>Expense list</h1>
+          {expenses.map((expense) => {
+            const { id, description, amount, createdAt } = expense;
+            return (
+              <ExpenseListItem
+                data-test="ExpenseListItem"
+                key={id}
+                id={id}
+                description={description}
+                amount={amount}
+                createdAt={createdAt}
+              />
+            );
+          })}
+        </React.Fragment>
+      ) : (
+          <p>No expenses</p>
+        )}
     </div>
   );
 };
