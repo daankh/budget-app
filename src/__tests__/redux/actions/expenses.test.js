@@ -1,11 +1,7 @@
-import { v4 as uuidv4 } from "uuid";
 import { addExpense, removeExpense, editExpense } from "../../../redux/actions/expenses"
 
 describe("should setup add expense action object", () => {
-    let id = null;
-    beforeEach(
-        () => { id = uuidv4(); }
-    )
+
     test("with default values", () => {
         const action = addExpense()
         expect(action).toEqual({
