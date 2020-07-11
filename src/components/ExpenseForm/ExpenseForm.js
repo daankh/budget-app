@@ -65,7 +65,7 @@ class ExpenseForm extends Component {
   render() {
     const { description, amount, note, createdAt, error } = this.state;
     return (
-      <div>
+      <div data-test="ExpenseForm">
         {error.length ? <p>{error}</p> : null}
         <form onSubmit={this.onFormSubmit}>
           <input
