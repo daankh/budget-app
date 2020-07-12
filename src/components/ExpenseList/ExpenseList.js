@@ -27,7 +27,7 @@ const ExpenseList = () => {
           })}
         </React.Fragment>
       ) : (
-          <p>No expenses</p>
+          <p data-test="noExpensesInfo">No expenses</p>
         )}
     </div>
   );
