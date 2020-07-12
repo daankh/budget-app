@@ -66,9 +66,10 @@ class ExpenseForm extends Component {
     const { description, amount, note, createdAt, error } = this.state;
     return (
       <div data-test="ExpenseForm">
-        {error.length ? <p>{error}</p> : null}
-        <form onSubmit={this.onFormSubmit}>
+        {error.length ? <p data-test="error-message">{error}</p> : null}
+        <form data-test="form" onSubmit={this.onFormSubmit}>
           <input
+            data-test="description-input"
             name="description"
             type="text"
             placeholder="Description"
@@ -77,6 +78,7 @@ class ExpenseForm extends Component {
             onChange={this.onChangeHandler}
           />
           <input
+            data-test="amount-input"
             name="amount"
             type="text"
             placeholder="Amount"
@@ -84,16 +86,18 @@ class ExpenseForm extends Component {
             onChange={this.onChangeHandler}
           />
           <MaterialUIPicker
+            data-test="picker"
             createdAt={createdAt}
             setCreatedAt={this.setCreatedAt}
           />
           <textarea
+            data-test="note-textarea"
             name="note"
             placeholder="Add a note for your expense (optional)"
             value={note}
             onChange={this.onChangeHandler}
           ></textarea>
-          <button>Add expense</button>
+          <button data-test="submit-button">Add expense</button>
         </form>
       </div>
     );
