@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const ExpenseListItem = ({ id, description, amount, createdAt }) => {
   return (
-    <div>
+    <div data-test="ExpenseListItem">
       <Link to={`/edit/${id}`}>
         <h3>{description}</h3>
       </Link>
