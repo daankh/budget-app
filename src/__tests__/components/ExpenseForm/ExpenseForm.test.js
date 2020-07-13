@@ -98,3 +98,24 @@ describe("Amount input", () => {
         expect(wrapper.state("amount")).toBe("")
     })
 })
+
+test("should call onSubmit prop for valid form submittion", () => {
+    const expense = {
+        id: "1",
+        description: "Gum",
+        note: "",
+        amount: 195,
+        createdAt: 0
+    }
+    const onSubmitSpy = jest.fn();
+    const wrapper = shallow(<ExpenseForm expense={expense} onSubmit={onSubmitSpy} />);
+    const form = wrapper.find('[data-test="form"]');
+    form.simulate("submit", { preventDefault: () => { } });
+    expect(wrapper.state('error')).toBe('');
+    expect(onSubmitSpy).toHaveBeenLastCalledWith({
+        description: expense.description,
+        amount: expense.amount,
+        note: expense.note,
+        createdAt: expense.createdAt
+    });
+})
