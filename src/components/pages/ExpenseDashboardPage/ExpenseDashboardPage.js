@@ -4,7 +4,7 @@ import ExpenseListFilters from "../../ExpenseListFilters/ExpenseListFilters";
 
 const ExpenseDashboardPage = () => {
   return (
-    <div>
+    <div data-test="ExpenseDashboardPage">
       <ExpenseListFilters />
       <ExpenseList />
     </div>
