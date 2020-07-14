@@ -11,9 +11,9 @@ const Header = () => (
       <NavLink data-test="link-create-expense" to="/create" activeClassName={"is-active"}>
         Create Expense
       </NavLink>
-      <NavLink data-test="link-help" to="/help" activeClassName={"is-active"}>
+      {/* <NavLink data-test="link-help" to="/help" activeClassName={"is-active"}>
         Help
-      </NavLink>
+      </NavLink> */}
     </nav>
   </header>
 );
