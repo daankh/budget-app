@@ -35,10 +35,10 @@ test("should render navigation", () => {
     expect(component.length).toBe(1)
 })
 
-test("should render 3 NavLinks", () => {
+test("should render 2 NavLinks", () => {
     const wrapper = shallow(<Header />)
     const component = wrapper.find(NavLink)
-    expect(component.length).toBe(3)
+    expect(component.length).toBe(2)
 })
 
 describe("NavLink to dashboard", () => {
@@ -89,25 +89,25 @@ describe("NavLink to edit page", () => {
     })
 })
 
-describe("NavLink to help page", () => {
-    let wrapper = null;
-    let component = null;
-    beforeEach(() => {
-        wrapper = shallow(<Header />)
-        component = wrapper.find('[data-test="link-help"]')
-    })
+// describe("NavLink to help page", () => {
+//     let wrapper = null;
+//     let component = null;
+//     beforeEach(() => {
+//         wrapper = shallow(<Header />)
+//         component = wrapper.find('[data-test="link-help"]')
+//     })
 
-    test("should render NavLinkt to help page", () => {
-        expect(component.length).toBe(1)
-    })
+//     test("should render NavLinkt to help page", () => {
+//         expect(component.length).toBe(1)
+//     })
 
-    test("NavLink to help page should have correct text", () => {
-        const expectedText = "Help"
-        expect(component.text()).toBe(expectedText)
-    })
+//     test("NavLink to help page should have correct text", () => {
+//         const expectedText = "Help"
+//         expect(component.text()).toBe(expectedText)
+//     })
 
-    test("should have correct to param", () => {
-        const expectedTo = "/help"
-        expect(component.prop("to")).toBe(expectedTo)
-    })
-})
+//     test("should have correct to param", () => {
+//         const expectedTo = "/help"
+//         expect(component.prop("to")).toBe(expectedTo)
+//     })
+// })
