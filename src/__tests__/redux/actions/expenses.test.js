@@ -2,19 +2,19 @@ import { addExpense, removeExpense, editExpense } from "../../../redux/actions/e
 
 describe("should setup add expense action object", () => {
 
-    test("with default values", () => {
-        const action = addExpense()
-        expect(action).toEqual({
-            type: "ADD_EXPENSE",
-            expense: {
-                id: expect.any(String),
-                description: "",
-                note: "",
-                amount: 0,
-                createdAt: 0,
-            },
-        })
-    })
+    // test("with default values", () => {
+    //     const action = addExpense()
+    //     expect(action).toEqual({
+    //         type: "ADD_EXPENSE",
+    //         expense: {
+    //             id: expect.any(String),
+    //             description: "",
+    //             note: "",
+    //             amount: 0,
+    //             createdAt: 0,
+    //         },
+    //     })
+    // })
     test("with provided values", () => {
         const expenseData = {
             description: "Rent",
@@ -25,10 +25,7 @@ describe("should setup add expense action object", () => {
         const action = addExpense(expenseData)
         expect(action).toEqual({
             type: "ADD_EXPENSE",
-            expense: {
-                id: expect.any(String),
-                ...expenseData,
-            },
+            expense: expenseData
         })
     })
 })
