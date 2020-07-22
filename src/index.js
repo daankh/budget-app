@@ -5,6 +5,7 @@ import configureStore from "./redux/store/configureStore";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import "./styles/main.scss";
+import "./firebase/firebase";
 
 const store = configureStore();
 
