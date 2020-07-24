@@ -2,6 +2,7 @@ import {
   ADD_EXPENSE,
   REMOVE_EXPENSE,
   EDIT_EXPENSE,
+  SET_EXPENSES
 } from "../action-types/expenses";
 
 const initialState = [];
@@ -28,6 +29,10 @@ const expensesReducer = (state = initialState, action) => {
           return expense;
         }
       });
+    }
+    case SET_EXPENSES: {
+      const { expenses } = action;
+      return expenses
     }
     default:
       return state;

@@ -2,6 +2,7 @@ import configureMockStore from "redux-mock-store";
 import thunk from 'redux-thunk';
 import database from "../../../firebase/firebase";
 import { addExpense, startAddExpense, removeExpense, editExpense } from "../../../redux/actions/expenses"
+import moment from 'moment';
 
 const createMockStore = configureMockStore([thunk]);
 
@@ -107,3 +108,34 @@ test("should setup edit expense action object", () => {
         }
     })
 })
+
+// describe("fetching data", () => {
+//     const expenses = [{
+//         description: "Gum",
+//         note: "",
+//         amount: 195,
+//         createdAt: 0
+//     }, {
+//         description: "Rent",
+//         note: "",
+//         amount: 108500,
+//         createdAt: moment(0).subtract(4, "days").valueOf()
+//     },
+//     {
+//         description: "Credit card",
+//         note: "",
+//         amount: 45000,
+//         createdAt: moment(0).add(4, "days").valueOf()
+//     }]
+
+//     beforeEach((done) => {
+//         const expensesData = {};
+//         expenses.forEach(({ id, description, note, amount, createdAt }) => {
+//             expensesData[id] = { description, note, amount, createdAt };
+//         });
+//         database.ref('expenses').set(expensesData).then(() => done());
+//     });
+
+//     test("should get correct data", () => { })
+
+// })
