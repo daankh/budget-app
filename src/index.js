@@ -9,9 +9,6 @@ import "./firebase/firebase";
 
 const store = configureStore();
 
-ReactDOM.render(<p>Loading...</p>, document.getElementById("root"))
-
-
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
