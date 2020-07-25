@@ -1,26 +1,12 @@
 import configureMockStore from "redux-mock-store";
 import thunk from 'redux-thunk';
 import database from "../../../firebase/firebase";
-import { addExpense, startAddExpense, removeExpense, editExpense } from "../../../redux/actions/expenses"
+import { addExpense, startAddExpense, removeExpense, editExpense, setExpenses, startSetExpenses } from "../../../redux/actions/expenses"
 import moment from 'moment';
 
 const createMockStore = configureMockStore([thunk]);
 
 describe("should setup add expense action object", () => {
-
-    // test("with default values", () => {
-    //     const action = addExpense()
-    //     expect(action).toEqual({
-    //         type: "ADD_EXPENSE",
-    //         expense: {
-    //             id: expect.any(String),
-    //             description: "",
-    //             note: "",
-    //             amount: 0,
-    //             createdAt: 0,
-    //         },
-    //     })
-    // })
 
     test("with provided values", () => {
         const expenseData = {
@@ -109,33 +95,54 @@ test("should setup edit expense action object", () => {
     })
 })
 
-// describe("fetching data", () => {
-//     const expenses = [{
-//         description: "Gum",
-//         note: "",
-//         amount: 195,
-//         createdAt: 0
-//     }, {
-//         description: "Rent",
-//         note: "",
-//         amount: 108500,
-//         createdAt: moment(0).subtract(4, "days").valueOf()
-//     },
-//     {
-//         description: "Credit card",
-//         note: "",
-//         amount: 45000,
-//         createdAt: moment(0).add(4, "days").valueOf()
-//     }]
+describe("fetching data", () => {
+    const expenses = [{
+        id: "1",
+        description: "Gum",
+        note: "",
+        amount: 195,
+        createdAt: 0
+    }, {
+        id: "2",
+        description: "Rent",
+        note: "",
+        amount: 108500,
+        createdAt: moment(0).subtract(4, "days").valueOf()
+    },
+    {
+        id: "3",
+        description: "Credit card",
+        note: "",
+        amount: 45000,
+        createdAt: moment(0).add(4, "days").valueOf()
+    }]
 
-//     beforeEach((done) => {
-//         const expensesData = {};
-//         expenses.forEach(({ id, description, note, amount, createdAt }) => {
-//             expensesData[id] = { description, note, amount, createdAt };
-//         });
-//         database.ref('expenses').set(expensesData).then(() => done());
-//     });
+    beforeEach((done) => {
+        const expensesData = {};
+        expenses.forEach(({ id, description, note, amount, createdAt }) => {
+            expensesData[id] = { description, note, amount, createdAt };
+        });
+        database.ref('expenses').set(expensesData).then(() => done());
+    });
 
-//     test("should get correct data", () => { })
+    test('should setup set expense action object with data', () => {
+        const action = setExpenses(expenses);
+        expect(action).toEqual({
+            type: 'SET_EXPENSES',
+            expenses
+        });
+    });
 
-// })
+    test('should fetch the expenses from firebase', (done) => {
+        const store = createMockStore({});
+        store.dispatch(startSetExpenses()).then(() => {
+            const actions = store.getActions();
+            expect(actions[0]).toEqual({
+                type: 'SET_EXPENSES',
+                expenses
+            });
+            done();
+        });
+    });
+
+})
