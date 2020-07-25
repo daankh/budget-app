@@ -1,7 +1,7 @@
 import configureMockStore from "redux-mock-store";
 import thunk from 'redux-thunk';
 import database from "../../../firebase/firebase";
-import { addExpense, startAddExpense, removeExpense, editExpense, setExpenses, startSetExpenses } from "../../../redux/actions/expenses"
+import { addExpense, startAddExpense, startRemoveExpense, removeExpense, editExpense, setExpenses, startSetExpenses } from "../../../redux/actions/expenses"
 import moment from 'moment';
 
 const createMockStore = configureMockStore([thunk]);
@@ -74,27 +74,6 @@ describe("should setup add expense action object", () => {
     })
 })
 
-
-test("should setup remove expense action object", () => {
-    const result = removeExpense({ id: "1234" })
-    expect(result).toEqual({ type: "REMOVE_EXPENSE", id: "1234" })
-})
-
-test("should setup edit expense action object", () => {
-    const id = "1234"
-    const updates = {
-        note: "new note",
-    }
-    const result = editExpense(id, updates);
-    expect(result).toEqual({
-        type: "EDIT_EXPENSE",
-        id: "1234",
-        updates: {
-            note: "new note"
-        }
-    })
-})
-
 describe("fetching data", () => {
     const expenses = [{
         id: "1",
@@ -125,6 +104,7 @@ describe("fetching data", () => {
         database.ref('expenses').set(expensesData).then(() => done());
     });
 
+
     test('should setup set expense action object with data', () => {
         const action = setExpenses(expenses);
         expect(action).toEqual({
@@ -146,3 +126,82 @@ describe("fetching data", () => {
     });
 
 })
+
+describe("removing data", () => {
+    const expenses = [{
+        id: "1",
+        description: "Gum",
+        note: "",
+        amount: 195,
+        createdAt: 0
+    }, {
+        id: "2",
+        description: "Rent",
+        note: "",
+        amount: 108500,
+        createdAt: moment(0).subtract(4, "days").valueOf()
+    },
+    {
+        id: "3",
+        description: "Credit card",
+        note: "",
+        amount: 45000,
+        createdAt: moment(0).add(4, "days").valueOf()
+    }]
+
+    beforeEach((done) => {
+        const expensesData = {};
+        expenses.forEach(({ id, description, note, amount, createdAt }) => {
+            expensesData[id] = { description, note, amount, createdAt };
+        });
+        database.ref('expenses').set(expensesData).then(() => done());
+    });
+
+    test("should setup remove expense action object", () => {
+        const result = removeExpense({ id: "1234" })
+        expect(result).toEqual({ type: "REMOVE_EXPENSE", id: "1234" })
+    })
+
+    test("should remove expenses fromd database", () => {
+        const store = createMockStore({ expenses });
+        store.dispatch(startRemoveExpense({ id: "2" })).then(() => {
+            const actions = store.getActions();
+            expect(actions[0].toEqual({
+                type: "REMOVE_EXPENSE",
+                id: "2"
+            }))
+        }).then(() => {
+            database.ref('expenses').once('value').then(dataSnapshot => {
+                const fetchedExpenses = [];
+                dataSnapshot.forEach(childSnapshot => {
+                    fetchedExpenses.push({
+                        id: childSnapshot.key,
+                        ...childSnapshot
+                    })
+                })
+                expect(fetchedExpenses).toEqual([
+                    expenses[0], expenses[2]
+                ])
+            })
+        })
+    })
+})
+
+
+
+
+test("should setup edit expense action object", () => {
+    const id = "1234"
+    const updates = {
+        note: "new note",
+    }
+    const result = editExpense(id, updates);
+    expect(result).toEqual({
+        type: "EDIT_EXPENSE",
+        id: "1234",
+        updates: {
+            note: "new note"
+        }
+    })
+})
+

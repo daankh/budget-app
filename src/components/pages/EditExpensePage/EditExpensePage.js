@@ -1,7 +1,7 @@
 import React from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { editExpense, removeExpense } from "../../../redux/actions/expenses";
+import { editExpense, startRemoveExpense } from "../../../redux/actions/expenses";
 import ExpenseForm from "../../ExpenseForm/ExpenseForm";
 
 const EditExpensePage = () => {
@@ -25,7 +25,7 @@ const EditExpensePage = () => {
       />
       <button
         onClick={() => {
-          dispatch(removeExpense({ id }));
+          dispatch(startRemoveExpense({ id }));
           history.push({ pathname: "/" });
         }}
       >
