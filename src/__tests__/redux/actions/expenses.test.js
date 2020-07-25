@@ -162,7 +162,7 @@ describe("removing data", () => {
         expect(result).toEqual({ type: "REMOVE_EXPENSE", id: "1234" })
     })
 
-    test("should remove expenses fromd database", () => {
+    test("should remove expenses fromd database", (done) => {
         const store = createMockStore({ expenses });
         store.dispatch(startRemoveExpense({ id: "2" })).then(() => {
             const actions = store.getActions();
@@ -170,21 +170,20 @@ describe("removing data", () => {
                 type: "REMOVE_EXPENSE",
                 id: "2"
             })
+            return database.ref('expenses').once('value')
+        }).then(snapshot => {
+            const fetchedExpenses = [];
+            snapshot.forEach(childSnapshot => {
+                fetchedExpenses.push({
+                    id: childSnapshot.key,
+                    ...childSnapshot.val()
+                })
+            })
+            expect(fetchedExpenses).toEqual([
+                expenses[0], expenses[2]
+            ])
+            done();
         })
-        // .then(() => {
-        //     database.ref('expenses').once('value').then(dataSnapshot => {
-        //         const fetchedExpenses = [];
-        //         dataSnapshot.val().forEach(childSnapshot => {
-        //             fetchedExpenses.push({
-        //                 id: childSnapshot.key,
-        //                 ...childSnapshot
-        //             })
-        //         })
-        //         expect(fetchedExpenses).toEqual([
-        //             expenses[0], expenses[2]
-        //         ])
-        //     })
-        // })
     })
 })
 
@@ -230,19 +229,17 @@ describe("editing expense", () => {
                 id,
                 updates
             })
+            return database.ref(`expenses/${id}`).once('value');
+        }).then((snapshot) => {
+            expect({
+                id: snapshot.key,
+                ...snapshot.val()
+            }).toEqual({
+                ...expenses[2],
+                ...updates
+            })
             done()
-            // return database.ref(`expenses/${id}`).once('value');
         })
-        // .then((snapshot) => {
-        //     expect({
-        //         id: snapshot.key,
-        //         ...snapshot.val()
-        //     }).toEqual({
-        //         ...expenses[2],
-        //         ...updates
-        //     })
-        //     done()
-        // })
     })
 
     test("should setup edit expense action object", () => {
