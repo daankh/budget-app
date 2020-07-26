@@ -13,7 +13,7 @@ const AddExpensePage = () => {
       <ExpenseForm
         onSubmit={(expense) => {
           dispatch(startAddExpense(expense));
-          history.push({ pathname: "/" });
+          history.push({ pathname: "/dashboard" });
         }}
       />
     </div>
