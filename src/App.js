@@ -13,7 +13,9 @@ const App = () => {
         dispatch(startSetExpenses()).then(() => {
           setExpensesFetching(false);
         })
-        history.push("/dashboard")
+        if (history.location.pathname === "/") {
+          history.push("/dashboard")
+        }
       } else {
         setExpensesFetching(false);
         history.push("/")
