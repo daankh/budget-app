@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import moment from "moment";
+import { history } from "../../routers/AppRouter";
 import MaterialUIPicker from "../Pickers/DatePicker/DatePicker";
 
 class ExpenseForm extends Component {
@@ -64,6 +65,14 @@ class ExpenseForm extends Component {
 
   render() {
     const { description, amount, note, createdAt, error } = this.state;
+    let buttonText = "Add expense"
+    if (history && history.location) {
+      const { pathname } = history.location;
+      if (pathname.includes("edit")) {
+        buttonText = "Edit expense"
+      }
+    }
+
     return (
       <div data-test="ExpenseForm">
         {error.length ? <p data-test="error-message">{error}</p> : null}
@@ -97,7 +106,7 @@ class ExpenseForm extends Component {
             value={note}
             onChange={this.onChangeHandler}
           ></textarea>
-          <button data-test="submit-button">Add expense</button>
+          <button data-test="submit-button">{buttonText}</button>
         </form>
       </div>
     );
