@@ -15,9 +15,6 @@ const Header = () => {
         Create Expense
       </NavLink>
       <button data-test="logout-button" onClick={() => dispatch(startLogout())}>Logout</button>
-      {/* <NavLink data-test="link-help" to="/help" activeClassName={"is-active"}>
-        Help
-      </NavLink> */}
     </nav>
   </header>)
 };
