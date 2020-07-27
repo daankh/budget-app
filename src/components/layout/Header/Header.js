@@ -8,7 +8,7 @@ const Header = () => {
   return (<header data-test="Header">
     <h1 data-test="heading">Expensify</h1>
     <nav data-test="navigation">
-      <NavLink data-test="link-dashboard" exact to="/dashboard" activeClassName={"is-active"}>
+      <NavLink data-test="link-dashboard" to="/dashboard" activeClassName={"is-active"}>
         Dashboard
       </NavLink>
       <NavLink data-test="link-create-expense" to="/create" activeClassName={"is-active"}>
