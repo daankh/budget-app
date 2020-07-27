@@ -2,6 +2,12 @@ import React from "react";
 import { shallow } from "enzyme";
 import Header from "../../../../components/layout/Header/Header";
 import { NavLink } from "react-router-dom"
+jest.mock("react-redux", () => ({
+    ...jest.requireActual("react-redux"),
+    useDispatch: () => ({
+        dispatch: jest.fn()
+    })
+}));
 
 test("should render Header component", () => {
     const wrapper = shallow(<Header />)
@@ -60,7 +66,7 @@ describe("NavLink to dashboard", () => {
     })
 
     test("should have correct to param", () => {
-        const expectedTo = "/"
+        const expectedTo = "/dashboard"
         expect(component.prop("to")).toBe(expectedTo)
     })
 })
@@ -111,3 +117,17 @@ describe("NavLink to edit page", () => {
 //         expect(component.prop("to")).toBe(expectedTo)
 //     })
 // })
+
+describe("Logout button", () => {
+    let wrapper = null;
+    beforeEach(() => {
+        wrapper = shallow(<Header />);
+    })
+
+    test("should render logout button", () => {
+        const logoutButton = wrapper.find('[data-test="logout-button"]');
+        expect(logoutButton.length).toBe(1);
+    });
+
+
+})

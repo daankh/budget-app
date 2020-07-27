@@ -20,13 +20,13 @@ const EditExpensePage = () => {
         expense={expense}
         onSubmit={(expense) => {
           dispatch(startEditExpense(id, expense));
-          history.push({ pathname: "/" });
+          history.push({ pathname: "/dashboard" });
         }}
       />
       <button
         onClick={() => {
           dispatch(startRemoveExpense({ id }));
-          history.push({ pathname: "/" });
+          history.push({ pathname: "/dashboard" });
         }}
       >
         Remove
