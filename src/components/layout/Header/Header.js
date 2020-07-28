@@ -12,7 +12,7 @@ const Header = () => {
           <Link className="header__title" data-test="link-dashboard" to="/dashboard">
             <h1 data-test="heading">Expensify</h1>
           </Link>
-          <button data-test="logout-button" onClick={() => dispatch(startLogout())}>Logout</button>
+          <button data-test="logout-button" className="button button--link" onClick={() => dispatch(startLogout())}>Logout</button>
         </div>
       </div>
     </header>
