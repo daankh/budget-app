@@ -34,22 +34,30 @@ const ExpenseListFilters = () => {
   };
 
   return (
-    <div>
-      <input
-        type="text"
-        value={textFilter}
-        onChange={onSearchInputChangeHandler}
-      />
-      <select value={sortBy} onChange={onSortSelectChangeHandler}>
-        <option value="date">Date</option>
-        <option value="amount">Amount</option>
-      </select>
-      <RangePicker
-        startDate={startDate}
-        endDate={endDate}
-        setStartDate={setStartDate}
-        setEndDate={setEndDate}
-      />
+    <div className="content-container">
+      <div className="input-group">
+        <div className="input-group__item">
+          <input
+            type="text"
+            value={textFilter}
+            onChange={onSearchInputChangeHandler}
+          />
+        </div>
+        <div className="input-group__item">
+          <select value={sortBy} onChange={onSortSelectChangeHandler}>
+            <option value="date">Date</option>
+            <option value="amount">Amount</option>
+          </select>
+        </div>
+        <div className="input-group__item">
+          <RangePicker
+            startDate={startDate}
+            endDate={endDate}
+            setStartDate={setStartDate}
+            setEndDate={setEndDate}
+          />
+        </div>
+      </div>
     </div>
   );
 };
