@@ -8,11 +8,15 @@ const ExpenseList = () => {
     getVisibleExpenses(state.expenses, state.filters)
   );
   return (
-    <div data-test="ExpenseList">
-      {expenses.length ? (
-        <React.Fragment>
-          <h1>Expense list</h1>
-          {expenses.map((expense) => {
+    <div data-test="ExpenseList" className="content-container">
+      <div className="list-header">
+        <div className="show-for-mobile">Expenses</div>
+        <div className="show-for-desktop">Expense</div>
+        <div className="show-for-desktop">Amount</div>
+      </div>
+      <div className="list-body">
+        {expenses.length ? (
+          expenses.map((expense) => {
             const { id, description, amount, createdAt } = expense;
             return (
               <ExpenseListItem
@@ -24,11 +28,13 @@ const ExpenseList = () => {
                 createdAt={createdAt}
               />
             );
-          })}
-        </React.Fragment>
-      ) : (
-          <p data-test="noExpensesInfo">No expenses</p>
-        )}
+          })
+        ) : (
+            <div>
+              <span data-test="noExpensesInfo" className="list-item list-item--message">No expenses</span>
+            </div>
+          )}
+      </div>
     </div>
   );
 };
