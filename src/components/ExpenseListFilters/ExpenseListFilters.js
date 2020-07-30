@@ -38,13 +38,15 @@ const ExpenseListFilters = () => {
       <div className="input-group">
         <div className="input-group__item">
           <input
+            className="text-input"
             type="text"
             value={textFilter}
+            placeholder="Search expenses"
             onChange={onSearchInputChangeHandler}
           />
         </div>
         <div className="input-group__item">
-          <select value={sortBy} onChange={onSortSelectChangeHandler}>
+          <select className="select" value={sortBy} onChange={onSortSelectChangeHandler}>
             <option value="date">Date</option>
             <option value="amount">Amount</option>
           </select>

@@ -4,21 +4,35 @@ import { useDispatch } from "react-redux";
 import MomentUtils from "@date-io/moment";
 import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core'
+import { makeStyles } from '@material-ui/styles'
+
+const useStyles = makeStyles(() => ({
+  picker: {
+    marginRight: 12
+  },
+  input: {
+    fontWeight: 300,
+    fontSize: "1.8rem",
+    maxWidth: 100,
+    borderRadius: "0 !important"
+  },
+  inputLabel: {
+    fontSize: "1.4rem"
+  }
+}))
 
 export const customTheme = createMuiTheme({
   palette: {
     primary: {
       main: "#364051"
     },
-  },
-  typography: {
-    fontSize: "0.9rem",
-  },
+  }
 })
 
 
 const RangePicker = ({ startDate, endDate, setStartDate, setEndDate }) => {
   const dispatch = useDispatch();
+  const classes = useStyles();
   return (
     <MuiThemeProvider theme={customTheme}>
       <MuiPickersUtilsProvider utils={MomentUtils}>
@@ -33,6 +47,13 @@ const RangePicker = ({ startDate, endDate, setStartDate, setEndDate }) => {
           animateYearScrolling
           clearable={true}
           inputVariant={"outlined"}
+          className={classes.picker}
+          inputProps={{
+            className: classes.input
+          }}
+          InputLabelProps={{
+            className: classes.inputLabel
+          }}
         />
         <DatePicker
           label="End date"
@@ -45,6 +66,12 @@ const RangePicker = ({ startDate, endDate, setStartDate, setEndDate }) => {
           animateYearScrolling
           clearable={true}
           inputVariant={"outlined"}
+          inputProps={{
+            className: classes.input
+          }}
+          InputLabelProps={{
+            className: classes.inputLabel
+          }}
         />
       </MuiPickersUtilsProvider>
     </MuiThemeProvider>
