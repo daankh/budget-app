@@ -35,7 +35,7 @@ const EditExpensePage = () => {
             history.push({ pathname: "/dashboard" });
           }}
         >
-          Remove
+          Remove expense
       </button>
       </div>
 
