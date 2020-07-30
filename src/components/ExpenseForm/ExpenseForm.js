@@ -79,6 +79,7 @@ class ExpenseForm extends Component {
         <form data-test="form" onSubmit={this.onFormSubmit}>
           <input
             data-test="description-input"
+            className="text-input"
             name="description"
             type="text"
             placeholder="Description"
@@ -88,6 +89,7 @@ class ExpenseForm extends Component {
           />
           <input
             data-test="amount-input"
+            className="text-input"
             name="amount"
             type="text"
             placeholder="Amount"
@@ -101,6 +103,7 @@ class ExpenseForm extends Component {
           />
           <textarea
             data-test="note-textarea"
+            className="textarea"
             name="note"
             placeholder="Add a note for your expense (optional)"
             value={note}

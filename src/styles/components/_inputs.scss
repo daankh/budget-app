@@ -4,8 +4,14 @@
     height: 100%;
     font-size: $font-size-large;
     font-weight: 300;
+    height: 58px
 }
 
 .select {
-    @extend .text-input
+    @extend .text-input;
+}
+
+.textarea {
+    @extend .text-input;
+    height: 10rem;
 }
