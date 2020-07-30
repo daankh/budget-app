@@ -74,44 +74,47 @@ class ExpenseForm extends Component {
     }
 
     return (
-      <div data-test="ExpenseForm">
-        {error.length ? <p data-test="error-message">{error}</p> : null}
-        <form data-test="form" onSubmit={this.onFormSubmit}>
-          <input
-            data-test="description-input"
-            className="text-input"
-            name="description"
-            type="text"
-            placeholder="Description"
-            autoFocus
-            value={description}
-            onChange={this.onChangeHandler}
-          />
-          <input
-            data-test="amount-input"
-            className="text-input"
-            name="amount"
-            type="text"
-            placeholder="Amount"
-            value={amount}
-            onChange={this.onChangeHandler}
-          />
+      <form data-test="ExpenseForm" className="form" onSubmit={this.onFormSubmit}>
+        {error.length ? <p data-test="error-message" className="form__error">{error}</p> : null}
+        <input
+          data-test="description-input"
+          className="text-input"
+          name="description"
+          type="text"
+          placeholder="Description"
+          autoFocus
+          value={description}
+          onChange={this.onChangeHandler}
+        />
+        <input
+          data-test="amount-input"
+          className="text-input"
+          name="amount"
+          type="text"
+          placeholder="Amount"
+          value={amount}
+          onChange={this.onChangeHandler}
+        />
+        <div>
           <MaterialUIPicker
             data-test="picker"
             createdAt={createdAt}
             setCreatedAt={this.setCreatedAt}
           />
-          <textarea
-            data-test="note-textarea"
-            className="textarea"
-            name="note"
-            placeholder="Add a note for your expense (optional)"
-            value={note}
-            onChange={this.onChangeHandler}
-          ></textarea>
-          <button data-test="submit-button">{buttonText}</button>
-        </form>
-      </div>
+        </div>
+        <textarea
+          data-test="note-textarea"
+          className="textarea"
+          name="note"
+          placeholder="Add a note for your expense (optional)"
+          value={note}
+          onChange={this.onChangeHandler}
+        >
+        </textarea>
+        <div>
+          <button data-test="submit-button" className="button" >{buttonText}</button>
+        </div>
+      </form>
     );
   }
 }

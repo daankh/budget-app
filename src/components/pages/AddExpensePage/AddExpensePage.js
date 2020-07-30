@@ -9,13 +9,19 @@ const AddExpensePage = () => {
   const dispatch = useDispatch();
   return (
     <div>
-      <h1>Add Expense</h1>
-      <ExpenseForm
-        onSubmit={(expense) => {
-          dispatch(startAddExpense(expense));
-          history.push({ pathname: "/dashboard" });
-        }}
-      />
+      <div className="page-header">
+        <div className="content-container">
+          <h1 className="page-header__title">Add Expense</h1>
+        </div>
+      </div>
+      <div className="content-container">
+        <ExpenseForm
+          onSubmit={(expense) => {
+            dispatch(startAddExpense(expense));
+            history.push({ pathname: "/dashboard" });
+          }}
+        />
+      </div>
     </div>
   );
 };
