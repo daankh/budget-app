@@ -51,7 +51,7 @@ describe("should render basic ExpenseForm component elements", () => {
 describe("Error message", () => {
     test("should render error for invalid submission", () => {
         const wrapper = shallow(<ExpenseForm />);
-        const form = wrapper.find('[data-test="form"]');
+        const form = wrapper.find('[data-test="ExpenseForm"]');
         form.simulate("submit", { preventDefault: () => { } });
         expect(wrapper.state('error').length).toBeGreaterThan(0);
         const errorMessageParagraph = wrapper.find('[data-test="error-message"]');
@@ -109,7 +109,7 @@ test("should call onSubmit prop for valid form submittion", () => {
     }
     const onSubmitSpy = jest.fn();
     const wrapper = shallow(<ExpenseForm expense={expense} onSubmit={onSubmitSpy} />);
-    const form = wrapper.find('[data-test="form"]');
+    const form = wrapper.find('[data-test="ExpenseForm"]');
     form.simulate("submit", { preventDefault: () => { } });
     expect(wrapper.state('error')).toBe('');
     expect(onSubmitSpy).toHaveBeenLastCalledWith({

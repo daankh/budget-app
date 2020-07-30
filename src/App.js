@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { startSetExpenses } from "./redux/actions/expenses"
 import AppRouter, { history } from "./routers/AppRouter";
+import LoadingPage from "./components/pages/LoadingPage/LoadingPage";
 import { firebase } from "./firebase/firebase";
 import { login, logout } from "./redux/actions/auth";
 
@@ -26,7 +27,7 @@ const App = () => {
     })
   }, [dispatch])
   return (
-    expensesFetching ? <p>Loading...</p> : <AppRouter data-test="AppRouter" />
+    expensesFetching ? <LoadingPage /> : <AppRouter data-test="AppRouter" />
   )
 };
 
